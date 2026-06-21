@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天博体育 · 知识库指引页</title>
+    <style>
+        /* 基础重置 & 整体氛围 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f2f4f7;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page-wrapper {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* 版式元素 */
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #0b1a2a;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.2rem;
+            font-weight: 550;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            border-left: 4px solid #3b6ea0;
+            padding-left: 0.8rem;
+        }
+        h3 {
+            font-size: 1.15rem;
+            margin: 0 0 0.6rem 0;
+            color: #1f3a57;
+        }
+        p {
+            margin-bottom: 1rem;
+            color: #2b3f55;
+        }
+
+        /* 卡片系统 — 柔和阴影 + 细边框 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 2.5rem;
+        }
+        .card {
+            background: #ffffff;
+            border: 1px solid #dde2eb;
+            border-radius: 16px;
+            padding: 1.5rem 1.3rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.03);
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+        .card .tag {
+            display: inline-block;
+            background: #e8ecf3;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            color: #2f4b6e;
+            margin-right: 0.3rem;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* 特性强调区 / 提示区 */
+        .notice-area {
+            background: #ffffff;
+            border: 1px solid #dce3ee;
+            border-radius: 18px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 2.2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.8rem;
+        }
+        .notice-block {
+            flex: 1 1 200px;
+        }
+        .notice-block .emoji-marker {
+            font-size: 1.2rem;
+            margin-right: 0.4rem;
+        }
+        .notice-block p {
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-summary {
+            background: #ffffff;
+            border: 1px solid #e0e6f0;
+            border-radius: 18px;
+            padding: 1.8rem 2rem 1.5rem;
+            margin: 2.2rem 0 1.8rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+        }
+        .faq-item {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px dashed #e5eaf2;
+            padding-bottom: 0.9rem;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .faq-q {
+            font-weight: 530;
+            color: #0f263b;
+            margin-bottom: 0.25rem;
+        }
+        .faq-a {
+            font-size: 0.92rem;
+            color: #405a78;
+        }
+
+        .link-sentence {
+            background: #f7f9fd;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        a {
+            color: #1d5a8b;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+            font-weight: 450;
+        }
+        a:hover {
+            border-bottom: 1px solid #1d5a8b;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dce2ed;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: #5f738b;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 1px solid #dce2ed;
+            padding-top: 1.5rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .notice-area {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+        @media (min-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 简单 hero 区 -->
+    <header style="margin-bottom: 1rem;">
+        <h1>📘 天博体育 · 信息指引</h1>
+        <p style="font-size: 1.1rem; color: #2f4b6e; max-width: 700px;">
+            如果你正在寻找一个以体育内容为核心的平台，并希望快速了解它的定位与特点，以下整理可以帮你建立初步印象。
+        </p>
+    </header>
+
+    <!-- 目录感卡片区：四个方向 -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>🏅 核心场景</h3>
+            <p><span class="tag">体育赛事</span><span class="tag">竞技数据</span></p>
+            <p>围绕足球、篮球、网球等主流运动，提供赛事实时动态、积分走势及队伍信息汇总。适合赛前浏览与赛后复盘。</p>
+        </div>
+        <div class="card">
+            <h3>🧭 内容类型</h3>
+            <p><span class="tag">资讯快报</span><span class="tag">深度专栏</span><span class="tag">数据面板</span></p>
+            <p>涵盖从短讯到长文分析的多层次内容，兼顾快速浏览与深度阅读需求，内容源持续更新。</p>
+        </div>
+        <div class="card">
+            <h3>⚙️ 平台特点</h3>
+            <p><span class="tag">响应式</span><span class="tag">轻量界面</span></p>
+            <p>页面结构以信息可读性优先，减少无关装饰。无论在桌面还是移动设备上，导航和分类都保持清晰。</p>
+        </div>
+        <div class="card">
+            <h3>📌 适合人群</h3>
+            <p><span class="tag">体育爱好者</span><span class="tag">数据控</span><span class="tag">快速查阅者</span></p>
+            <p>无论你是想追踪联赛排名、了解球队近况，还是寻找赛前简报，这里都提供了结构化的入口。</p>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区 合并为 notice-area -->
+    <div class="notice-area">
+        <div class="notice-block">
+            <p><span class="emoji-marker">📋</span><strong>如何理解这个站点</strong></p>
+            <p style="font-size: 0.95rem;">简单来说，<a href="https://ssl-cn-tianbo.com">天博体育</a>是一个以体育信息聚合和赛事数据展示为主的平台。它更偏向提供参考性内容，而非单一新闻流。你可以把它看作一个体育领域的“轻量资料库”。</p>
+        </div>
+        <div class="notice-block">
+            <p><span class="emoji-marker">💡</span><strong>使用小提示</strong></p>
+            <p style="font-size: 0.95rem;">建议先浏览导航分类，找到你关注的赛事或联赛。页面没有复杂的注册流程，大部分信息可直接查阅。如果你对某个数据维度有疑问，可以留意专栏区域的解释说明。</p>
+        </div>
+    </div>
+
+    <!-- 相关信息区：FAQ 摘要 -->
+    <div class="faq-summary">
+        <h2 style="border-left-color: #6f8aa7; margin-bottom: 1.5rem;">❓ 快速了解 · 常见疑问</h2>
+        <div class="faq-item">
+            <div class="faq-q">Q：这个平台主要提供什么？</div>
+            <div class="faq-a">A：以体育赛事相关的资讯、数据统计、赛程预告及部分深度内容为主。内容覆盖面较广，从五大联赛到小众赛事都有涉及。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Q：信息更新频率怎么样？</div>
+            <div class="faq-a">A：赛事期间基本保持实时或准实时更新；赛前分析、赛后总结类内容通常在比赛日前后发布。你可以按时间线浏览最新条目。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Q：是否需要注册才能浏览？</div>
+            <div class="faq-a">A：大部分板块可以直接查看，无需登录。部分互动功能或个性化设置可能涉及账号，但浏览核心信息没有门槛。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Q：移动端体验如何？</div>
+            <div class="faq-a">A：页面采用响应式布局，在手机和平板上会自动调整卡片与字体大小，操作区域也适配触控。推荐使用现代浏览器访问以获得最佳效果。</div>
+        </div>
+    </div>
+
+    <!-- 嵌入自然链接的句子（非独立按钮） -->
+    <p style="background: #ffffff; border: 1px solid #dde2eb; border-radius: 14px; padding: 1rem 1.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+        🔗 如果你对某个联赛的数据或者近期赛程感兴趣，不妨直接前往 <a href="https://ssl-cn-tianbo.com">天博体育</a> 浏览分类板块，那里有按赛事整理的目录结构，查找起来很直观。
+    </p>
+
+    <!-- 简单分割与脚注 -->
+    <hr>
+    <div class="footer-note">
+        <span>本页为知识库式指引，帮助快速了解网站内容方向。</span><br>
+        <span style="color: #7b8fa3;">所有信息仅供参考，实际内容以目标站点为准。</span>
+    </div>
+
+</div>
+</body>
+</html>
