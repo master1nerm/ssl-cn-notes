@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>球速体育 · 简单切入，快速识别</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #fcedda 0%, #f7d9b3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            color: #2e241e;
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 1024px;
+            width: 100%;
+        }
+
+        /* 白色内容卡片 */
+        .card {
+            background-color: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+            padding: 2.4rem 2.2rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 36px rgba(0, 0, 0, 0.08);
+        }
+
+        /* hero 区 */
+        .hero {
+            text-align: center;
+            padding: 3.6rem 2rem 2.8rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #b4652e, #9f5524);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            color: #5e4d3d;
+            max-width: 520px;
+            margin: 0 auto 1.2rem;
+            font-weight: 400;
+        }
+
+        .hero .intro-sentence {
+            font-size: 1rem;
+            color: #4b3f34;
+            background: #f5efe9;
+            display: inline-block;
+            padding: 0.4rem 1.4rem;
+            border-radius: 60px;
+            margin-top: 0.4rem;
+        }
+
+        /* 圆角按钮感链接 —— 用在句子内部时保持自然，这里额外设计成卡片内的装饰性标签 */
+        .pill-link {
+            display: inline-block;
+            background: #f5e8dc;
+            color: #7a562e;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .pill-link:hover {
+            background: #e5d3c0;
+            transform: scale(1.02);
+        }
+
+        /* 优势区三列网格 */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.8rem;
+            margin: 1.4rem 0 0.6rem;
+        }
+
+        .feature-item {
+            background: #faf6f1;
+            border-radius: 24px;
+            padding: 1.6rem 1.2rem;
+            text-align: center;
+        }
+
+        .feature-item .emoji-badge {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #382e26;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-item p {
+            font-size: 0.93rem;
+            color: #5a4b3f;
+        }
+
+        /* 说明区 */
+        .explain-section p {
+            margin-bottom: 0.8rem;
+        }
+
+        .explain-section strong {
+            color: #8f5d31;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .faq-row {
+            display: flex;
+            gap: 0.4rem;
+            align-items: baseline;
+            border-bottom: 1px dashed #e2d6ca;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #4f3f32;
+            min-width: 6rem;
+        }
+
+        .faq-a {
+            color: #3f352c;
+        }
+
+        .faq-a a {
+            color: #8f5d31;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+
+        .faq-a a:hover {
+            color: #633f1f;
+        }
+
+        /* 底部链接卡片 */
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2rem;
+            padding: 1.4rem 0.8rem;
+            background: #ffffffd9;
+            backdrop-filter: blur(2px);
+            border-radius: 60px;
+            margin-top: 0.8rem;
+        }
+
+        .footer-links span {
+            color: #5a4a3c;
+        }
+
+        .footer-links a {
+            color: #7a562e;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #c9b6a3;
+        }
+
+        .footer-links a:hover {
+            border-bottom: 2px solid #7a562e;
+        }
+
+        .footnote {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7d6b5b;
+            margin-top: 1.6rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 760px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            .card {
+                padding: 1.8rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .faq-row {
+                flex-direction: column;
+                gap: 0.1rem;
+            }
+            .faq-q {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- hero 卡片 -->
+        <div class="card hero">
+            <h1>球速体育 · 一目了然</h1>
+            <p class="tagline">从名字开始，快速识别你需要的体育内容平台</p>
+            <div class="intro-sentence">
+                <span>⚡ 想找比赛资讯、数据或社区？ <a href="https://cns-qiususports.com" style="color:#8f5d31; text-decoration: underline; text-underline-offset: 4px; font-weight: 600;">球速体育</a> 直接对应你的需求</span>
+            </div>
+        </div>
+
+        <!-- 优势区  -->
+        <div class="card">
+            <h2 style="font-size:1.5rem; font-weight:500; color:#382e26; margin-bottom: 0.2rem;">为什么从它开始</h2>
+            <p style="color:#5a4a3c; margin-bottom:1rem;">三个简单理由，帮你快速确认方向</p>
+            <div class="grid-3">
+                <div class="feature-item">
+                    <span class="emoji-badge">🏷️</span>
+                    <h3>名称即用途</h3>
+                    <p>「球速体育」四个字直接提示内容属性，不用猜测或搜索。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji-badge">🧭</span>
+                    <h3>结构清晰</h3>
+                    <p>版块分类直观，从热门赛事到数据统计都能快速定位。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji-badge">📱</span>
+                    <h3>跨设备友好</h3>
+                    <p>无论手机或电脑，页面适配流畅，信息层次一致。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 说明区：从用户识别角度展开 -->
+        <div class="card explain-section">
+            <h2 style="font-size:1.4rem; font-weight:500; color:#382e26; margin-bottom: 0.8rem;">怎样快速判断是否适合你</h2>
+            <p>当你打开一个体育类网站，最先看到的往往是名字和首页布局。<strong>球速体育</strong> 在这个环节做得比较直白——名称里没有模糊词汇，导航栏也按赛事类型、数据、资讯等做了分区。如果你习惯先扫一眼页面结构再决定是否深入，这种设置能节省不少时间。</p>
+            <p>举个例子：想找某个联赛的赛程，通常可以直接从顶部菜单进入；如果只是随便看看当日热点，首页的信息流也足够覆盖。不需要注册或登录就能看到大部分内容，这一点对只想快速浏览的人来说很友好。</p>
+            <p>当然，每个人使用习惯不同。有人喜欢先看社区讨论，有人更关注数据更新频率。这时候可以花一两分钟滑动页面，感受一下信息密度和更新节奏——<a href="https://cns-qiususports.com" style="color:#8f5d31; font-weight:600; text-decoration: underline;">球速体育</a> 在首页就把主要模块摊开了，不太需要层层点击才能摸清全貌。</p>
+        </div>
+
+        <!-- FAQ 摘要卡片 -->
+        <div class="card">
+            <h2 style="font-size:1.3rem; font-weight:500; color:#382e26; margin-bottom: 1rem;">常见疑问 · 简要回答</h2>
+            <div class="faq-mini">
+                <div class="faq-row">
+                    <span class="faq-q">这是哪类网站？</span>
+                    <span class="faq-a">综合性体育内容平台，涵盖资讯、数据、赛事信息等。</span>
+                </div>
+                <div class="faq-row">
+                    <span class="faq-q">需要下载吗？</span>
+                    <span class="faq-a">不需要，直接在浏览器打开 <a href="https://cns-qiususports.com">球速体育</a> 即可使用。</span>
+                </div>
+                <div class="faq-row">
+                    <span class="faq-q">内容更新快吗？</span>
+                    <span class="faq-a">主要赛事期间信息更新比较及时，日常也有常规内容发布。</span>
+                </div>
+                <div class="faq-row">
+                    <span class="faq-q">是否免费浏览？</span>
+                    <span class="faq-a">基础浏览和信息查阅免费，部分深度数据或功能可能有权限区分。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部链接卡片 (同时展示自然链接) -->
+        <div class="footer-links">
+            <span>🔗 直接前往 <a href="https://cns-qiususports.com">球速体育</a></span>
+            <span>📋 了解 <a href="https://cns-qiususports.com">球速体育</a> 的版块</span>
+            <span>💬 关于 <a href="https://cns-qiususports.com">球速体育</a> 的常见问题</span>
+        </div>
+
+        <div class="footnote">
+            <p>页面仅作介绍参考，具体内容以 <a href="https://cns-qiususports.com" style="color:#7a562e; text-decoration: underline;">球速体育</a> 实际呈现为准 · 保持简单识别</p>
+        </div>
+    </div>
+</body>
+</html>
